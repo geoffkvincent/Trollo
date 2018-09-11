@@ -1,2 +1,15 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+<h1><%= @board.name %> - <%= @list.name %></h1>
+<hr />
+<h2>Tasks</h2>
+<hr />
+<% @list.tasks.each do |task| %>
+  <%= render 'tasks/task', { task: task } %>
+<% end %>
+
+<hr />
+<%= link_to 'Add Task', new_list_task_path(@list) %>
+
+<hr />
+<%= link_to 'Edit List', edit_board_list_path([@board, @list]) %>
+<%= link_to 'Delete List', [@board, @list], method: :delete %>
+<%= link_to 'Back To Lists', board_lists_path(@board) %>
