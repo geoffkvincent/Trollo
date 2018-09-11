@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
+  before_action :set_board, only: [:update]
   before_action :set_list
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index
   end
@@ -26,20 +28,31 @@ class TasksController < ApplicationController
   end
 
   def update
-
+    if @task.update(task_params)
+      redirect_to board_list_path(@board, @list)
+    else
+      render :edit
+    end
   end
+
 
   def destroy
     @task.destroy
-    redirect_to
+    redirect_to new_list_task_path(@list)
   end
 
   private
     def set_list
       @list = List.find(params[:list_id])
     end
-
-  
+    
+    def set_task
+      @task = Task.find(params[:id])
+    end
+    
+    def set_board
+      @board = Board.find(params[:id])
+    end
 
     def task_params
       params.require(:task).permit(:name, :body)
