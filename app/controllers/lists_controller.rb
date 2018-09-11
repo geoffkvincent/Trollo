@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
   before_action :set_board
   before_action :set_list, only: [:show, :edit, :update, :destroy]
-  before_action :set_task, only: [:edit, :update, :destroy]
+  
 
 
   def index
@@ -56,9 +56,7 @@ class ListsController < ApplicationController
       @list = List.find(params[:id])
     end
 
-    def set_task
-      @task = Task.find(params[:id])
-    end
+
 
     def list_params
       params.require(:list).permit(:name)
