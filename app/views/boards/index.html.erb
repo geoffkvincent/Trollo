@@ -4,20 +4,24 @@
     <button class="ui inverted purple button"><%= link_to 'Create New Board', new_board_path %></button>
   <hr />
 </div>
-<ul>
+
   <% @boards.each do |board| %>
     <div class="ui cards">
       <div class="card">
         <div class="content">
-        <div class="header">
-          <li><%= link_to board.name, board_lists_path(board) %></li>
+          <div class="header">
+            <%= link_to board.name, board_lists_path(board) %>
           </div>
-          <%= link_to 'Delete', board, method: :delete %> | <%= link_to 'Edit', edit_board_path(board) %>
-          
+          <div class="extra content">
+            <div class="ui two buttons">
+              <div class="ui basic green button"><%= link_to 'Edit', edit_board_path(board) %></div>
+              <div class="ui basic red button"><%= link_to 'Delete', board, method: :delete %></div>
+            </div>
           </div>
+        </div>
       </div>
     </div>
     <% end %>
     
-</ul>
+
 
