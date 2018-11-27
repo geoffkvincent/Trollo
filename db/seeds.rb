@@ -12,6 +12,10 @@
         name: Faker::Commerce.product_name,
       )
       10.times do
+        l.tasks.create(
+          name: Faker::Lebowski.character,
+          body: Faker::Hipster.sentence(2),
+        )
       end
     end
   end
